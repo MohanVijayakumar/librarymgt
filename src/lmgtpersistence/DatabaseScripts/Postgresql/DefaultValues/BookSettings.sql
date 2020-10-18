@@ -1,0 +1,1 @@
+INSERT INTO "BookSettings" VALUES(1,4,20,5,100,500000,'jpg,jpeg,png');

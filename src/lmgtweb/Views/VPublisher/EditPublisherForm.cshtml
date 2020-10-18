@@ -1,0 +1,29 @@
+@model lmgtweb.Publisher.Models.EditPublisherFormViewModel
+@using System.Text.Json
+
+<div style="display:none;" id="id_publisheredit_publisherdata">@JsonSerializer.Serialize(Model.Publisher)</div>
+<div class="container" style="margin: auto 50% auto 10%;">
+    <div class="panel">
+        <p class="panel-heading">
+            Edit Author
+        </p>
+
+        <div class="panel-block">
+            <div class="columns">
+                <div class="column">
+
+                    <div class="field">
+                        <label class="label">Name</label>
+                        <div class="control">
+                            <input id="id_publisheredit_publishername" class="input" type="text" placeholder="Publisher Name" value="@(Model.Publisher.Name)">
+                        </div>
+                    </div>
+
+                    <button class="button is-info" id="id_publisheredit_update">Update</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

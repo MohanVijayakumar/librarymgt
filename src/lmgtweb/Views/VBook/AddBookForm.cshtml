@@ -1,0 +1,89 @@
+@model lmgtweb.Book.Models.AddBookFormViewModel
+@using System.Text.Json
+
+<div style="display:none;" id="id_bookadd_booksettingsdata">@JsonSerializer.Serialize(Model.Settings)</div>
+<div class="container" style="margin: auto 50% auto 10%;">
+    <div class="panel">
+        <p class="panel-heading">
+            Add New Book
+        </p>
+
+        <div class="panel-block">
+            <div class="columns">
+                <div class="column">
+
+                    <div class="field">
+                        <label class="label">Name</label>
+                        <div class="control">
+                            <input id="id_bookadd_name" class="input" type="text" placeholder="Book Name">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <div class="select">
+                                <select id="id_bookadd_category">
+                                <option value="0">Select Category</option>
+                                @{
+                                    foreach(var cY in Model.Categories){
+                                        <option value="@(cY.ID)">@(cY.Name)</option>
+                                    }
+                                }                
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <div class="select">
+                                <select id="id_bookadd_author">
+                                <option value="0">Select Author</option>
+                                @{
+                                    foreach(var aR in Model.Authors){
+                                        <option value="@(aR.ID)">@(aR.Name)</option>
+                                    }
+                                }                
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <div class="select">
+                                <select id="id_bookadd_publisher">
+                                <option value="0">Select Publisher</option>
+                                @{
+                                    foreach(var pR in Model.Publishers){
+                                        <option value="@(pR.ID)">@(pR.Name)</option>
+                                    }
+                                }                
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="file has-name is-right">
+                        <label class="file-label">
+                            <input class="file-input" type="file" id="id_bookadd_coverimage_file">
+                            <span class="file-cta">
+                            
+                                <span class="file-label">
+                                    Book Cover
+                                </span>
+                                
+                            </span>
+                            <span  id="id_bookadd_coverimage_filename" class="file-name"></span>
+                        </label>
+                    </div>
+
+                    <textarea id="id_bookadd_description" class="textarea" rows="4"></textarea>
+
+                    <button id="id_bookadd_create" class="button is-info">Create</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\lmgtdomain\lmgtdomain.csproj" />
+    <ProjectReference Include="..\lmgtcommon\lmgtcommon.csproj" />
+    <ProjectReference Include="..\lmgtsecurity\lmgtsecurity.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+</Project>

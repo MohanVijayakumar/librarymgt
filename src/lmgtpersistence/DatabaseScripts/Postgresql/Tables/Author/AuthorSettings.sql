@@ -1,0 +1,5 @@
+CREATE TABLE "AuthorSettings"(
+    "ID" SMALLINT NOT NULL PRIMARY KEY,
+    "NameMinLength" SMALLINT NOT NULL,
+    "NameMaxLength" SMALLINT NOT NULL
+);

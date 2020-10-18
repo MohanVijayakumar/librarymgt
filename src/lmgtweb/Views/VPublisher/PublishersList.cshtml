@@ -1,0 +1,43 @@
+@model lmgtweb.Publisher.Models.ListPublishersViewModel
+<div class="container" style="margin: auto 50% auto 10%;">
+    <div class="panel">
+        <p class="panel-heading">
+            Authors List
+        </p>
+
+        <div class="panel-block">
+            <div class="columns">
+                <div class="column">
+                    <table class="table is-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>                                
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @{
+                                foreach(var ar in Model.Publishers)
+                                {
+                                    <tr data-mypublisherid="@(ar.ID)">
+                                        <td>@(ar.ID)</td>
+                                        <td>@(ar.Name)</td>                                        
+                                        <td>
+                                            <button class="button is-info id_publisherslist_edit">Edit</button>
+                                            <button class="button is-danger id_publisherslist_delete">Delete</button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

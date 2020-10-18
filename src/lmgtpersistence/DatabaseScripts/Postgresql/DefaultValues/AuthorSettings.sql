@@ -1,0 +1,1 @@
+INSERT INTO "AuthorSettings" VALUES(1,4,20);

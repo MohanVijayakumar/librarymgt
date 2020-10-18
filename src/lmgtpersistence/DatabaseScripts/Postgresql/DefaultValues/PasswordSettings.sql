@@ -1,0 +1,1 @@
+INSERT INTO "PasswordSettings" VALUES(1,6,20);

@@ -1,0 +1,1 @@
+INSERT INTO "PublisherSettings" VALUES(1,4,20);

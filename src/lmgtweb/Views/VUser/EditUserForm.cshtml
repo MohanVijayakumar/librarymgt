@@ -1,0 +1,49 @@
+@model lmgtweb.User.Models.EditUserFormViewModel
+@using System.Text.Json
+
+<div style="display:none;" id="id_useredit_userdata">@JsonSerializer.Serialize(Model.User)</div>
+<div class="container" style="margin: auto 50% auto 10%;">
+    <div class="panel">
+        <p class="panel-heading">
+            Edit User
+        </p>
+        <div class="panel-block">
+        <div class="columns">
+            <div class="column">
+
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                        <input id="id_useredit_username" class="input" type="text" placeholder="User Name" value="@(Model.User.Name)">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <div class="select">
+                            <select id="id_useredit_userroles">                            
+                            @{
+                                foreach(var uR in Model.Roles){
+                                    if(uR.ID == Model.User.RoleID)
+                                    {
+                                        <option value="@(uR.ID)" selected>@(uR.Name)</option>
+                                    }   
+                                    else
+                                    {
+                                        <option value="@(uR.ID)">@(uR.Name)</option>
+                                    }                                    
+                                }
+                            }                
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="button is-info" id="id_useredit_update">Update</button>
+
+            </div>
+        </div>
+    </div>
+    </div>   
+    
+</div>

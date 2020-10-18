@@ -1,0 +1,1 @@
+INSERT INTO "User" ("Name","Password","RoleID","CreateBy","CreateTime") VALUES ('vijay','AQAAAAEAACcQAAAAEIOHa+NKua4dI63aAVsj40u2BCr8HhILK942KGyzHg10+17ilZAwYmTYFFKSJkOFcw==',1,1,'16-Oct-2020 10:10:10');

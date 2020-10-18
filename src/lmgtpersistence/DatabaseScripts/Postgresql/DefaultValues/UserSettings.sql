@@ -1,0 +1,1 @@
+INSERT INTO "UserSettings" VALUES(1,4,20);

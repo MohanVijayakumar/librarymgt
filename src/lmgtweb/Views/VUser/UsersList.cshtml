@@ -1,0 +1,41 @@
+@model lmgtweb.User.Models.UsersListViewModel
+<div class="container" style="margin: auto 40% auto 10%;">
+    <div class="panel">
+        <p class="panel-heading">
+            Users List
+        </p>
+        <div class="panel-block">
+            <div class="columns">
+                <div class="column">
+                    <table class="table is-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach(var ur in Model.Users)
+                                {
+                                    <tr data-myuserid="@(ur.ID)">
+                                        <td>@(ur.ID)</td>
+                                        <td>@(ur.Name)</td>
+                                        <td>@(ur.RoleName)</td>
+                                        <td>
+                                            <button class="button is-info id_userslist_edit">Edit</button>
+                                            <button class="button is-danger id_userslist_delete">Delete</button>
+                                        </td>
+                                    </tr>
+                                    
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

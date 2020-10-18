@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/bulma.css" />
+    </head>
+    <body>
+        <div class="box">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                Library
+            </div>
+
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item">Users</a>
+                    <a class="navbar-item">Books</a>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="button is-primary">
+                            Log Out
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        </div>
+
+        <div class="columns">
+            <div class="column is-2">
+                <div class="box">
+                    <aside class="menu">
+                        <p class="menu-label">
+                            Users
+                        </p>
+                        <ul class="menu-list">
+                            <li id="id_menu_allusers"><a>All Users</a></li>
+                            <li id="id_menu_addnewuser"><a>Add New User</a></li>
+                        </ul>
+                        <p class="menu-label">
+                            Author
+                        </p>
+                        <ul class="menu-list">
+                            <li id="id_menu_allauthors"><a>All Authors</a></li>
+                            <li id="id_menu_addnewauthor"><a>Add New Author</a></li>
+                        </ul>
+                        <p class="menu-label">
+                            Book
+                        </p>
+                        <ul class="menu-list">
+                            <li id="id_menu_allbooks"><a>All Books</a></li>
+                            <li id="id_menu_addnewbook"><a>Add New Book</a></li>
+                        </ul>
+                        <p class="menu-label">
+                            Publisher
+                        </p>
+                        <ul class="menu-list">
+                            <li id="id_menu_allpublishers"><a>All Publishers</a></li>
+                            <li id="id_menu_addnewpublisher"><a>Add New Publisher</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+            <div class="column is-12">
+                <div class="container" id="id_app">
+                    Hai
+                </div>
+            </div>
+        </div>
+        
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/js/axios.js"></script>
+        <script src="~/js/common.js"></script>
+        <script src="~/js/menu.js"></script>
+        <script src="~/js/user.js"></script>
+        <script src="~/js/author.js"></script>
+        <script src="~/js/publisher.js"></script>
+        <script src="~/js/book.js"></script>        
+    </body>
+</html>
