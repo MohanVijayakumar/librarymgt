@@ -45,6 +45,18 @@ namespace lmgtweb.Controllers
             vm.Settings = await _BookSettingsRepository.ByAsync();            
             return View("views/vbook/addbookform.cshtml",vm);
         }
+        
+        [Route("/book/editbookform")]
+        public async Task<IActionResult> EditBookForm(int bookID)
+        {
+            EditBookFormViewModel vm = new EditBookFormViewModel();
+            vm.Authors = await _AuthorRepository.AllAsync();
+            vm.Categories = await _BookCategoryRepository.AllAsync();
+            vm.Publishers = await _PublisherRepository.AllAsync();
+            vm.Settings = await _BookSettingsRepository.ByAsync();
+            vm.BookModel = await _BookOutputModelRepository.ByAsync(bookID);            
+            return View("views/vbook/editbookform.cshtml",vm);
+        }
 
         [Route("/book/listbooks")]
         public async Task<IActionResult> ListBooks()

@@ -7,5 +7,7 @@ namespace lmgtdomain.Book.Repository
     public interface IBookOutputModelRepository
     {
         Task<List<BookOutputModel>> AllAsync();
+
+        Task<BookOutputModel> ByAsync(int bookID);
     }
 }

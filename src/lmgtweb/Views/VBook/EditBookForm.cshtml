@@ -1,0 +1,128 @@
+@model lmgtweb.Book.Models.EditBookFormViewModel
+@using System.Text.Json
+
+@{
+    var hasCoverFile = !string.IsNullOrEmpty(Model.BookModel.CoverImagePublicPath);
+    var diplayForCoverFileContainer = hasCoverFile ? "none" : "block";
+}
+
+<div style="display:none" id="id_bookedit_bookoutputmodel">@JsonSerializer.Serialize(Model.BookModel)</div>
+<div style="display:none;" id="id_bookedit_booksettingsdata">@JsonSerializer.Serialize(Model.Settings)</div>
+<div class="container" style="margin: auto 50% auto 10%;">
+    <div class="panel">
+        <p class="panel-heading">
+            Add New Book
+        </p>
+
+        <div class="panel-block">
+            <div class="columns">
+                <div class="column">
+
+                    <div class="field">
+                        <label class="label">Name</label>
+                        <div class="control">
+                            <input id="id_bookedit_name" class="input" type="text" placeholder="Book Name" value="@(Model.BookModel.Name)">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <div class="select">
+                                <select id="id_bookedit_category">                                
+                                @{
+                                    foreach(var cY in Model.Categories){
+                                        if(cY.ID == Model.BookModel.CategoryID)
+                                        {
+                                            <option value="@(cY.ID)" selected>@(cY.Name)</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@(cY.ID)">@(cY.Name)</option>
+                                        }
+                                    }
+                                }                
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <div class="select">
+                                <select id="id_bookedit_author">                                
+                                @{
+                                    foreach(var aR in Model.Authors){
+                                        if(aR.ID == Model.BookModel.AuthorID)
+                                        {
+                                            <option value="@(aR.ID)" selected>@(aR.Name)</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@(aR.ID)">@(aR.Name)</option>    
+                                        }
+                                        
+                                    }
+                                }                
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <div class="select">
+                                <select id="id_bookedit_publisher">
+                                
+                                @{
+                                    foreach(var pR in Model.Publishers){
+                                        if(pR.ID == Model.BookModel.PublisherID)
+                                        {
+                                            <option value="@(pR.ID)" selected>@(pR.Name)</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@(pR.ID)">@(pR.Name)</option>
+                                        }                                        
+                                    }
+                                }                
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="file has-name is-right" id="id_bookedit_selectfile_container" style="display:@diplayForCoverFileContainer">
+                        <label class="file-label">
+                            <input class="file-input" type="file" id="id_bookedit_coverimage_file">
+                            <span class="file-cta">
+                            
+                                <span class="file-label">
+                                    Book Cover
+                                </span>
+                                
+                            </span>
+                            <span  id="id_bookedit_coverimage_filename" class="file-name"></span>
+                        </label>
+                    </div>
+                    
+                    @{
+                        if(hasCoverFile){
+
+                            <div id="id_bookedit_showfile_container">
+                                <figure class="image is-128x128">
+                                    <img src="@(Model.BookModel.CoverImagePublicPath)" />
+                                </figure>
+                                <button id="id_bookedit_deletefile" class="button is-danger">Delete File</button>
+                            </div>
+
+                            
+                        }
+                    }
+                    <textarea id="id_bookedit_description" class="textarea" rows="4">@(Model.BookModel.Description)</textarea>
+
+                    <button id="id_bookedit_update" class="button is-info">Update</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

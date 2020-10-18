@@ -62,11 +62,12 @@ namespace lmgtusecase.Book
             
             if(!string.IsNullOrEmpty(inputModel.TempCoverImagePath))
             {
-                book.CoverImagePath = _CoverImagePathGenerator.Generate(basePath,book.ID,Path.GetExtension(inputModel.TempCoverImagePath));
+                _CoverImagePathGenerator.Generate(basePath,book.ID,Path.GetExtension(inputModel.TempCoverImagePath));
+                book.CoverImagePath = _CoverImagePathGenerator.WebImageSrcPath;
                 await _BookRepository.UpdateCoverImageAsync(book);
             }
 
-            File.Move(inputModel.TempCoverImagePath,book.CoverImagePath);            
+            File.Move(inputModel.TempCoverImagePath,_CoverImagePathGenerator.FullFilePath);            
             return true;
         }
         

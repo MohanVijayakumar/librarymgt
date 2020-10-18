@@ -91,7 +91,7 @@ namespace lmgtweb.Controllers
         }
 
         [Route("Edit")]
-        public async Task<IActionResult> Edit(BookEditInputModel inputModel)
+        public async Task<IActionResult> Edit(EditBookInputModelForWeb inputModel)
         {
             var resAddBook = false;
             var basePath = _WebHostEnvironMent.WebRootPath;
@@ -99,7 +99,19 @@ namespace lmgtweb.Controllers
             _UnitOfWork.Start();
             try
             {
-                resAddBook = await _EditBook.EditAsync(inputModel,userID,basePath);
+                BookEditInputModel im = new BookEditInputModel();
+                im.AuthodID= inputModel.AuthodID;
+                im.BookID = inputModel.BookID;
+                im.CategoryID = inputModel.CategoryID;
+                im.Description = inputModel.Description;
+                im.IsOldCoverFileDeleted = inputModel.IsOldCoverFileDeleted;
+                im.Name = inputModel.Name;
+                im.PublisherID = inputModel.PublisherID;
+                if(inputModel.IsOldCoverFileDeleted)
+                {
+                    im.TempCoverImagePath = await  _GetBookCoverTempFilePath(inputModel.CoverImageFile);
+                }
+                resAddBook = await _EditBook.EditAsync(im,userID,basePath);
             }           
             catch(Exception ex)
             {

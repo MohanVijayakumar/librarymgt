@@ -3,9 +3,13 @@ namespace lmgtusecase.Book
 {
     public class CoverImagePathGenerator
     {
-        public string Generate(string basePath,int bookID,string fileExtension)
+        public string FullFilePath {get;private set;}
+        public string WebImageSrcPath {get;private set;}
+
+        public void Generate(string basePath,int bookID,string fileExtension)
         {
-            return $"{basePath}{Path.DirectorySeparatorChar}bcimage{Path.DirectorySeparatorChar}{bookID}{fileExtension}";
+            FullFilePath = $"{basePath}{Path.DirectorySeparatorChar}bcimage{Path.DirectorySeparatorChar}{bookID}{fileExtension}";
+            WebImageSrcPath =  $"/bcimage/{bookID}{fileExtension}";
         }
     }
 }

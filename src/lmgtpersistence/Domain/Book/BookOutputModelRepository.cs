@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
-
+using System.Linq;
 using lmgtdomain.Book.Model;
 using lmgtdomain.Book.Repository;
 namespace lmgtpersistence.Domain.Book
@@ -16,6 +16,13 @@ namespace lmgtpersistence.Domain.Book
         {
             string q = @"SELECT * FROM ""GetAllBookOutputModel""();";
             return await _DbWrapper.ReturnProcAsync<BookOutputModel>(q);
+        }
+
+        public async Task<BookOutputModel> ByAsync(int bookID)
+        {
+            string q = @"SELECT * FROM ""GetBookOutputModelByID""(@0);";
+            object[] args =  new object[] { bookID};
+            return (await _DbWrapper.ReturnProcAsync<BookOutputModel>(q,args)).FirstOrDefault();
         }
     }
 }

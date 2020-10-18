@@ -60,17 +60,15 @@ namespace lmgtusecase.Book
             
             var book = _ToBookDtoConverter.Convert(inputModel);
             var bBeforeUpdate = await _BookRepository.ByAsync(inputModel.BookID);
+            
 
-            if(string.IsNullOrEmpty(inputModel.TempCoverImagePath))
-            {
-                book.CoverImagePath = _CoverImagePathGenerator.Generate(basePath,book.ID,Path.GetExtension(inputModel.TempCoverImagePath));
-                
-            }
-            else
+            if(inputModel.IsOldCoverFileDeleted)
             {
                 book.CoverImagePath = bBeforeUpdate.CoverImagePath;
+                _CoverImagePathGenerator.Generate(basePath,book.ID,Path.GetExtension(inputModel.TempCoverImagePath));                    
+                File.Move(inputModel.TempCoverImagePath,_CoverImagePathGenerator.FullFilePath,true);
             }
-
+            
             await _BookRepository.UpdateAsync(book);
             
             return true;

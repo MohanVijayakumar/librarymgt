@@ -1,8 +1,9 @@
-namespace lmgtdomain.Book.Model
+namespace lmgtweb.Book.Models
 {
-    public class BookEditInputModel : BookInputModel
+    public class EditBookInputModelForWeb : AddBookInputModel
     {
         public int BookID {get;set;}
+
         public bool IsOldCoverFileDeleted {get;set;}
     }
 }
