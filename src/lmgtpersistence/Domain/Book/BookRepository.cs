@@ -42,7 +42,7 @@ namespace lmgtpersistence.Domain.Book
 
         public async Task<int> UpdateLendAsync(BookDto book)
         {
-            return await _Db.UpdateManyAsync<BookDto>().Where(w=> w.ID == book.ID && w.IsLend == !book.IsLend)
+            return await _Db.UpdateManyAsync<BookDto>().Where(w=> w.ID == book.ID && w.IsLend == false)
             .OnlyFields((f) => new {f.IsLend}).Execute(book);
         }
     }

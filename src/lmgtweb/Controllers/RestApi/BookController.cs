@@ -175,6 +175,7 @@ namespace lmgtweb.Controllers
         {
             bool resDelete = false;
             int userID = UtilitiesClaims.GetUserID(HttpContext.User.Claims.ToList());
+            inputModel.LendBy = userID;
             _UnitOfWork.Start();
             try
             {
@@ -190,11 +191,19 @@ namespace lmgtweb.Controllers
             {
                 _UnitOfWork.RollBack();
                 if(_LendBook.IsBookLend)
-                {
+                {                    
                     return Ok(new {BookAlreadyLend = true});
+                }
+
+                if(_LendBook.FailedValidations.Count > 0)
+                {
+                    _UnitOfWork.Complete();
+                    _Logger.LogCritical(string.Join(" ",_EditBook.FailedValidations.Select(s=> s.SystemErrorMessage)));
+                    return Ok(new {HasError=true,Error = string.Join(" ", _EditBook.FailedValidations.Select(s=> s.ExposableErrorMessage)) });
                 }
                 else
                 {
+
                     return Ok(new {HasError = true,Error = "Unknown"});
                 }
             }

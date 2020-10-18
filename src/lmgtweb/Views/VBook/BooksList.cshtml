@@ -1,4 +1,46 @@
 @model lmgtweb.Book.Models.BooksListViewModel
+
+<div class="modal" id="id_bookslist_userlend_modal">
+    <div class="modal-background">
+        <div class="modal-content">
+
+            <div class="panel">
+                <p class="panel-heading">
+                    Books List
+                </p>
+                <div class="panel-block">
+                    <div class="columns">
+                        <div class="column">
+
+                            <div class="field">
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="id_bookslist_users">
+                                            <option value="0">Select Publisher</option>
+                                            @{
+                                                foreach(var ur in Model.Users)
+                                                {
+                                                    <option value="@(ur.ID)">@(ur.Name)</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="id_bookslist_lendbook" class="button is-info">Lend</button>
+                            <button id="id_bookslist_userlend_close_modal" class="button is-danger">Close</button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>        
+
+        </div>
+    </div>
+</div>
+
+
 <div class="container" style="margin: auto 30% auto 10%;">
     <div class="panel">
         <p class="panel-heading">

@@ -155,17 +155,25 @@ var Book = (function(){
             alert(error);
         });
     }
-
+    var _SelectedBookIDToLend = null;
     function _BootBooksList(){
         $('.id_bookslist_edit').click(function(){
             var bookID = $(this).closest('tr').data('mybookid');
             _LoadEditBookForm(bookID);
         });
         $('.id_bookslist_lend').click(function(){
-
+            _SelectedBookIDToLend = $(this).closest('tr').data('mybookid');
+            $('#id_bookslist_userlend_modal').addClass('is-active');
         });
         $('.id_bookslist_delete').click(function(){
 
+        });
+        $('#id_bookslist_lendbook').click(function(){
+
+            _LendBook();
+        });
+        $('#id_bookslist_userlend_close_modal').click(function(){   
+            $('#id_bookslist_userlend_modal').removeClass('is-active');
         });
     }
 
@@ -320,6 +328,37 @@ var Book = (function(){
             PublisherID : publisherID,
             IsOldCoverFileDeleted : _HasCoverImageFileDeletedAtEdit
         };
+    }
+
+    function _LendBook(){
+        if(!(_SelectedBookIDToLend > 0)){
+            alert('No Book Selected to lend')
+            return false;
+        }
+
+        var lendTo = $('#id_bookslist_users').val();
+        if(!(lendTo > 0)){
+            alert('Select the user to lend');
+            return;
+        }
+        var fD = new FormData();
+        fD.append('BookID',_SelectedBookIDToLend);
+        fD.append('LendTo',lendTo);
+        axios.post('/Book/Lend',fD)
+        .then(function(response){
+            $('#id_bookslist_userlend_modal').removeClass('is-active');
+            var d = response.data;
+            if(d.success){
+                return;
+            }
+            if(d.bookAlreadyLend){
+                alert('book already lend');
+                return;
+            }
+        }).catch(function(error){
+            $('#id_bookslist_userlend_modal').removeClass('is-active');
+            alert(error);
+        });
     }
     
     return {

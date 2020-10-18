@@ -24,7 +24,7 @@ namespace lmgtusecase.Book
         private readonly ILendBookRepository _LendBookRepository;
         private readonly ToLendBookConverter _ToLendBookConverter;
         private readonly IBookRepository _BookRepository;
-        private List<IValidationResult> FailedValidations;
+        public List<IValidationResult> FailedValidations {get;private set;}
         public bool IsBookLend {get ;private set;}
         public async Task<bool> LendAsync(LendBookInputModel inputModel,int creatingUserID)
         {
@@ -53,6 +53,7 @@ namespace lmgtusecase.Book
                 return false;
             }   
             
+            book.IsLend = true;
             var countUpdate = await _BookRepository.UpdateLendAsync(book);
             if(countUpdate != 1)
             {
