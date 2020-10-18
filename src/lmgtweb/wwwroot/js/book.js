@@ -141,9 +141,32 @@ var Book = (function(){
             PublisherID : publisherID
         };
     }
+
+    function _LoadBooksList() {
+        axios.get("/Book/ListBooks")
+        .then(function(response){
+            Common.$AppContainer().html('').html(response.data);
+            _BootBooksList();
+        }).catch(function(error){
+            alert(error);
+        });
+    }
+
+    function _BootBooksList(){
+        $('.id_bookslist_edit').click(function(){
+
+        });
+        $('.id_bookslist_lend').click(function(){
+
+        });
+        $('.id_bookslist_delete').click(function(){
+
+        });
+    }
     
     return {
-        LoadAddBookForm : _LoadAddBookForm
+        LoadAddBookForm : _LoadAddBookForm,
+        LoadBooksList : _LoadBooksList
     };
 
 }());

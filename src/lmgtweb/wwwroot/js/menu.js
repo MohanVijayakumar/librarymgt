@@ -28,6 +28,10 @@ var Menu = (function(){
             Book.LoadAddBookForm();
          });
          
+         $('#id_menu_allbooks').click(function(){
+            Book.LoadBooksList();
+         });
+         
     }    
 
     return {

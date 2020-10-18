@@ -1,0 +1,63 @@
+@model lmgtweb.Book.Models.BooksListViewModel
+<div class="container" style="margin: auto 30% auto 10%;">
+    <div class="panel">
+        <p class="panel-heading">
+            Books List
+        </p>
+
+        <div class="panel-block">
+            <div class="columns">
+                <div class="column">
+                    <table class="table is-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Author</th>
+                                <th>Publisher</th>
+                                <th>IsLend</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @{
+                                foreach(var book in Model.Books)
+                                {
+                                    <tr data-mybookid="@(book.ID)">
+                                        <td>@(book.ID)</td>
+                                        <td>@(book.Name)</td>
+                                        <td>@(book.CategoryName)</td>
+                                        <td>@(book.AuthorName)</td>
+                                        <td>@(book.PublisherName)</td>
+                                        <td>@(book.IsLend ? "Yes" : "No")</td>
+
+                                        <td>
+                                            <button class="button is-info id_bookslist_edit">Edit</button>
+                                            @{
+                                                if(book.IsLend)
+                                                {
+                                                    <button class="button is-info id_bookslist_revoke">Revoke</button>
+                                                }
+                                                else
+                                                {
+                                                    <button class="button is-info id_bookslist_lend">Lend</button>
+                                                }
+                                            }
+                                            
+                                            <button class="button is-danger id_bookslist_delete">Delete</button>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

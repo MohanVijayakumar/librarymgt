@@ -23,6 +23,7 @@ namespace lmgtdiregister.Domain
             services.AddTransient<IBookRepository ,BookRepository>();
             services.AddTransient<IBookSettingsRepository,BookSettingsRepository>();
             services.AddTransient<ILendBookRepository,LendBookRepository>();
+            services.AddTransient<IBookOutputModelRepository,BookOutputModelRepository>();
         }
 
         private void _Validator(IServiceCollection services)
