@@ -26,7 +26,7 @@ var Author = (function(){
         then(function(response){
             var d = response.data;
             if(d.success){
-                alert("Added");
+                _LoadAllAuthors();
                 return;
             }
 

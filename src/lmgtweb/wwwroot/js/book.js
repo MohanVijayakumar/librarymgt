@@ -53,6 +53,7 @@ var Book = (function(){
         }).then(function(response){
             var d = response.data;
             if(d.success){
+                _LoadBooksList();
                 return;
             }
             if(d.nameAlreadyExists){
@@ -231,6 +232,7 @@ var Book = (function(){
         }).then(function(response){
             var d = response.data;
             if(d.success){
+                _LoadBooksList();
                 return;
             }
             if(d.nameAlreadyExists){
@@ -349,6 +351,7 @@ var Book = (function(){
             $('#id_bookslist_userlend_modal').removeClass('is-active');
             var d = response.data;
             if(d.success){
+                _LoadBooksList();
                 return;
             }
             if(d.bookAlreadyLend){

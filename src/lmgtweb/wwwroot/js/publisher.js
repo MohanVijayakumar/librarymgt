@@ -26,7 +26,7 @@ var Publisher = (function(){
         then(function(response){
             var d = response.data;
             if(d.success){
-                alert("Added");
+                _LoadAllPublishers();
                 return;
             }
 
