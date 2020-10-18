@@ -1,0 +1,34 @@
+@model lmgtweb.Book.Models.SearchBookResultViewModel
+
+@{
+    foreach(var b in Model.Books)
+    {
+        <div class="card">
+            <div class="card-content">
+                
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-48x48">
+                            <img src="@(b.CoverImagePublicPath)" >
+                        </figure>
+                    </div>
+
+                    <div class="media-content">
+                        <p class="title is-4">@(b.Name)</p>
+                        <p class="title is-6">@(b.AuthorName)</p>
+                    </div>                   
+
+                </div>
+
+                <div class="content">
+                    
+                    Category : @(b.CategoryName)
+                    Publisher : @(b.PublisherName)
+                    IsLend : @(b.IsLend ? "Yes" : "No")
+                    
+                </div>
+                
+            </div>
+        </div>
+    }
+}

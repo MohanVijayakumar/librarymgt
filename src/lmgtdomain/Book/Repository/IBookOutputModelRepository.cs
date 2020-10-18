@@ -9,5 +9,7 @@ namespace lmgtdomain.Book.Repository
         Task<List<BookOutputModel>> AllAsync();
 
         Task<BookOutputModel> ByAsync(int bookID);
+
+        Task<List<BookOutputModel>> ByAuthorAsync(int authorID);
     }
 }

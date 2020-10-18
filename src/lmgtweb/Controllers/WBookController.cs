@@ -65,7 +65,22 @@ namespace lmgtweb.Controllers
             vm.Books = await _BookOutputModelRepository.AllAsync();
             vm.Users = await _UserOutputModelRepository.AllAsync();
             return View("views/vbook/bookslist.cshtml",vm);
+        }
 
+        [Route("/book/searchform")]
+        public async Task<IActionResult> SearchForm()
+        {
+            SearchBookFormViewModel vm = new SearchBookFormViewModel();
+            vm.Authors  = await _AuthorRepository.AllAsync();
+            return View("views/vbook/searchbookform.cshtml",vm);
+        }
+
+        [Route("/book/search")]
+        public async Task<IActionResult> Search(SearchBookInputModel inputModel)
+        {
+            SearchBookResultViewModel vm = new SearchBookResultViewModel();
+            vm.Books = await _BookOutputModelRepository.ByAuthorAsync(inputModel.AuthorID);   
+            return View("views/vbook/searchbookresult.cshtml",vm);
         }
     }
 

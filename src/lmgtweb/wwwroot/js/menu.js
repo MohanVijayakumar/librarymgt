@@ -31,6 +31,10 @@ var Menu = (function(){
          $('#id_menu_allbooks').click(function(){
             Book.LoadBooksList();
          });
+
+         $('#id_menu_searchbook').click(function(){
+            Book.LoadSearchBookForm();
+         });
          
     }    
 

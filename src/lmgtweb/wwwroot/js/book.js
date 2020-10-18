@@ -364,9 +364,43 @@ var Book = (function(){
         });
     }
     
+    function _LoadSearchBookForm(){
+        axios.get("/Book/SearchForm")
+        .then(function(response){
+            Common.$AppContainer().html('').html(response.data);
+            _BootSearchBookForm();
+        }).catch(function(error){
+            alert(error);
+        });
+    }
+
+    function _BootSearchBookForm(){
+        $('#id_booksearch_search').click(function(){
+            _SearchBook();
+        });
+    }
+
+    function _SearchBook(){
+        var authorID = $('#id_booksearch_author').val();
+        if(!(authorID > 0)){
+            alert('Select User');
+            return;
+        }
+        var fD = new FormData();
+        fD.append('AuthorID',authorID);
+        axios.post("/Book/Search",fD)
+        .then(function(response){
+            $('#id_booksearch_result').html('').html(response.data);
+            
+        }).catch(function(error){
+            alert(error);
+        });
+    }
+
     return {
         LoadAddBookForm : _LoadAddBookForm,
-        LoadBooksList : _LoadBooksList
+        LoadBooksList : _LoadBooksList,
+        LoadSearchBookForm : _LoadSearchBookForm
     };
 
 }());

@@ -24,5 +24,12 @@ namespace lmgtpersistence.Domain.Book
             object[] args =  new object[] { bookID};
             return (await _DbWrapper.ReturnProcAsync<BookOutputModel>(q,args)).FirstOrDefault();
         }
+
+        public async Task<List<BookOutputModel>> ByAuthorAsync(int authorID)
+        {
+            string q = @"SELECT * FROM ""GetBookOutputModelByAuthor""(@0);";
+            object[] args =  new object[] { authorID};
+            return (await _DbWrapper.ReturnProcAsync<BookOutputModel>(q,args));
+        }
     }
 }
