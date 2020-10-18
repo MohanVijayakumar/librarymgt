@@ -38,6 +38,7 @@ var User = (function(){
         then(function(response){
             var rdata = response.data;
             if(rdata.success){
+                _LoadAllUsers();
                return ; 
             }
 
@@ -201,7 +202,7 @@ var User = (function(){
         then(function(response){
             var rdata = response.data;
             if(rdata.success){
-                alert('Updated');
+                _LoadAllUsers();
                return ; 
             }
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
@@ -34,7 +36,16 @@ namespace lmgtweb.Controllers
         [Route("Home")]
         public IActionResult Home()
         {
-            return View("views/home/admin.cshtml");
+            var roleID = HttpContext.User.Claims.Single(s=> s.Type == ClaimTypes.Role).Value;   
+            if(roleID =="1")
+            {
+                return View("views/home/admin.cshtml");
+            }
+            else
+            {
+                return View("views/home/customer.cshtml");
+            }
+            
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -42,7 +42,7 @@ var Login = (function(){
                 return;
             }
             
-            if(d.InvalidCredentials == true){
+            if(d.invalidCredentials == true){
                 alert('Invalid Credentials');
             }
             
